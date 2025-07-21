@@ -24,11 +24,6 @@ export default function NavBar() {
               <MenuItemLink to='/createActivity'>
                 Create Activity
               </MenuItemLink>
-              <MenuItem sx={{
-                fontSize: '1.2rem', textTransform: 'uppercase', fontWeight: 'bild'
-              }}>
-                Contact
-              </MenuItem>
             </Box>
             <MenuItem>
               User menu
