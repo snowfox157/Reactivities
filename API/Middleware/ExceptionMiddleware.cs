@@ -52,7 +52,7 @@ public class ExceptionMiddleware(ILogger<ExceptionMiddleware> logger, IHostEnvir
                 {
                     validationErrors[error.PropertyName] = existingErrors.Append(error.ErrorMessage).ToArray();
                     // new dotent method
-                    validationErrors[error.PropertyName] = [.. existingErrors, error.ErrorMessage];
+                    // validationErrors[error.PropertyName] = [.. existingErrors, error.ErrorMessage];
                 }
                 else
                 {

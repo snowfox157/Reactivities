@@ -4,7 +4,7 @@ import HomePage from "../../features/home/HomePage";
 import ActivityDashborad from "../../features/activities/dashborad/ActivityDashborad";
 import ActivityForm from "../../features/form/ActivityForm";
 import ActivityDetailPage from "../../features/activities/details/ActivityDetailPage";
-import Counter from "../../features/form/counter/Counter";
+import Counter from "../../features/counter/Counter";
 import TestErrors from "../../features/errors/TestErrors";
 import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
