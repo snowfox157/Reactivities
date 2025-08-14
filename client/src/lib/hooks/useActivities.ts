@@ -1,18 +1,20 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import agent from "../api/agent";
 import { useLocation } from "react-router";
+import { useAccount } from "./useAccount";
 
 export const useActivities = (id?: string) => {
   const queryClient = useQueryClient();
+  const {currentUser} = useAccount();
   const location = useLocation();
 
-  const { data: activities, isPending } = useQuery({
+  const { data: activities, isLoading } = useQuery({
     queryKey: ['activities'],
     queryFn: async () => {
       const response = await agent.get<Activity[]>('/activities')
       return response.data;
     },
-    enabled: !id && location.pathname == '/activities' // 確認甚麼情況進行query
+    enabled: !id && location.pathname == '/activities' && !!currentUser // 確認甚麼情況進行query
     // staleTime: 1000 * 60 * 5 // 設定此項query是否為新的，設定時長，時長內不重新query，是此資料更新程度
   })
 
@@ -22,7 +24,7 @@ export const useActivities = (id?: string) => {
       const response = await agent.get<Activity>(`/activities/${id}`);
       return response.data;
     },
-    enabled: !!id,
+    enabled: !!id && !!currentUser,
   })
 
   const updateActivity = useMutation({
@@ -61,7 +63,7 @@ export const useActivities = (id?: string) => {
 
   return {
     activities,
-    isPending,
+    isLoading,
     updateActivity,
     createActivity,
     deleteActivity,
