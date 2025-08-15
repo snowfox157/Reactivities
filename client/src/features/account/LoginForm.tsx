@@ -45,7 +45,9 @@ export default function LoginForm() {
             </Box>
             <TextInput label='Email' control={control} name='email'></TextInput>
             <TextInput type="password" label='Password' control={control} name='password'></TextInput>
-            <Button type="submit" disabled={!isValid || isSubmitting}
+            <Button 
+                type="submit" 
+                disabled={!isValid || isSubmitting}
                 variant="contained"
                 size="large"
             >

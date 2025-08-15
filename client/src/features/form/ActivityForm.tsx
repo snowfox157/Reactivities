@@ -27,7 +27,7 @@ export default function ActivityForm() {
                 city: activity.city,
                 venue: activity.venue,
                 latitude: activity.latitude,
-                longtitude: activity.longitude
+                longitude: activity.longitude
             }
         });
     }, [activity, reset])
@@ -35,14 +35,6 @@ export default function ActivityForm() {
     const onSubmit = async (data: ActivitySchema) => {
         const { location, ...rest } = data;
         const flattenedData = { ...rest, ...location }
-        console.log(flattenedData);
-        
-            if (activity) {
-        console.log({ ...activity, ...flattenedData });
-            } else {
-                console.log(flattenedData);
-            }
-        // return;
         try {
             if (activity) {
                 updateActivity.mutate({ ...activity, ...flattenedData }, {
