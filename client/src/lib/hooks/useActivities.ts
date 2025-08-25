@@ -18,10 +18,12 @@ export const useActivities = (id?: string) => {
     // staleTime: 1000 * 60 * 5 // 設定此項query是否為新的，設定時長，時長內不重新query，是此資料更新程度
     select: data => {
       return data.map(activity => {
+        const host = activity.attendees.find(x => x.id === activity.hostId);
         return {
           ...activity,
           isHost: currentUser?.id === activity.hostId,
-          isGoing: activity.attendees.some(x => x.id === currentUser?.id)
+          isGoing: activity.attendees.some(x => x.id === currentUser?.id),
+          hostImageUrl: host?.imageUrl
         }
       })
     }
@@ -35,10 +37,12 @@ export const useActivities = (id?: string) => {
     },
     enabled: !!id && !!currentUser,
     select: data => {
+      const host = data.attendees.find(x => x.id === data.hostId);
       return {
         ...data,
         isHost: currentUser?.id === data.hostId,
-        isGoing: data.attendees.some(x => x.id === currentUser?.id)
+        isGoing: data.attendees.some(x => x.id === currentUser?.id),
+        hostImageUrl: host?.imageUrl
       }
     }
   })
